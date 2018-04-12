@@ -41,7 +41,6 @@ $colors: (
   dark:       #222
 );
 
-
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -53,8 +52,8 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
+$text-input-md-show-valid-highlight: false;
+$text-input-md-show-invalid-highlight: false;
 
 // App Windows Variables
 // --------------------------------------------------
@@ -86,3 +85,4 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+

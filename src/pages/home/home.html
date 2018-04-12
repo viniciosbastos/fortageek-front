@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="light">
     <ion-title>
       Meus Anúncios
     </ion-title>
@@ -7,13 +7,27 @@
 </ion-header>
 
 <ion-content padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Puxe para atualizar"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
-    <ion-item *ngFor='let ad of ads'>
-      <ion-thumbnail item-start>
-        <img src="{{ad.item.image}}">
-      </ion-thumbnail>
-      <h2>{{ad.item.name}}</h2>
-      <ion-badge>{{ad.status}}</ion-badge>
-    </ion-item>
+      <ion-item *ngFor='let ad of ads'>
+        <ion-thumbnail item-start>
+          <img src="{{ad.item.image}}">
+        </ion-thumbnail>
+        <h2>{{ad.item.name}}</h2>
+        <ion-badge>{{ad.status}}</ion-badge>
+      </ion-item>
   </ion-list>
+<ion-fab right bottom>
+    <button (click)="add()" ion-fab color="dark">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  
 </ion-content>
