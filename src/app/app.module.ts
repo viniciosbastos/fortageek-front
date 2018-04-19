@@ -3,44 +3,55 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { AdvertisementsPage } from '../pages/advertisements/advertisements';
-import { ProposalsPage } from '../pages/proposals/proposals';
 import { TabsPage } from '../pages/tabs/tabs';
-import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
+import { Api } from '../providers/api';
+import { ApiLogin } from '../providers/api-login';
+import { AnunciosPage } from '../pages/anuncios/anuncios';
+import { PropostasPage } from '../pages/propostas/propostas';
+import { PerfilPage } from '../pages/perfil/perfil';
+import { ApiAnuncios } from '../providers/api-anuncios';
 
 @NgModule({
   declarations: [
     MyApp,
     TabsPage,
     HomePage,
-    AdvertisementsPage,
-    ProposalsPage,
-    ProfilePage,
+    AnunciosPage,
+    PropostasPage,
+    PerfilPage,
     LoginPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({
+      name: '__data',
+      driverOrder: ['sqlite', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    AdvertisementsPage,
-    ProposalsPage,
+    AnunciosPage,
+    PropostasPage,
     TabsPage,
-    ProfilePage,
+    PerfilPage,
     LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Api,
+    ApiLogin,,
+    ApiAnuncios,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

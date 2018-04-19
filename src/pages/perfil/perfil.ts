@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
-import { User } from '../../models/user';
+import { Usuario } from '../../models/usuario';
 
 /**
  * Generated class for the ProfilePage page.
@@ -11,12 +11,19 @@ import { User } from '../../models/user';
 
 
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html',
+  selector: 'page-perfil',
+  templateUrl: 'perfil.html',
 })
-export class ProfilePage implements OnInit{
+export class PerfilPage implements OnInit{
 
-  user: User = new User(1, "Usuário A","usuario","12345","../../../www/assets/imgs/default-user.png");
+  user: Usuario = {
+    id: 1,
+    nome: 'Usuário A',
+    username: 'usuario',
+    password: '12345',
+    foto: '../../../www/assets/imgs/default-user.png'
+  };
+  
   isEditing: Boolean;
 
   constructor(private navCtrl: NavController, private toastCtrl: ToastController) {
