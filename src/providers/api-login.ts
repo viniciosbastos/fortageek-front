@@ -14,6 +14,7 @@ export class ApiLogin {
     doLogin(user: Usuario) {
         return this.api.post('login', user)
             .map(response => {
+                response = response.value;
                 let authHeader = 'Basic ' + response.data.auth;
 
                 this.storage.set('key', authHeader);

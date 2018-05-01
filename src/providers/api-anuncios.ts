@@ -10,6 +10,7 @@ export class ApiAnuncios {
 
     getMyAdvertisements(): Observable<Anuncio[]> {
         return this.api.get('anuncio/meus-anuncios').map(response => {
+            response = response.value
             if (response.success) {
                 return response.data.anuncios;
             }

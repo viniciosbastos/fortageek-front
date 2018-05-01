@@ -29,8 +29,9 @@ export class LoginPage implements OnInit{
             .subscribe(
                 val => this.navCtrl.push(TabsPage), 
                 err => {
+                    console.log(err);
                     let toast = this.toastCtrl.create({
-                        message: "err.status",
+                        message: err.status,
                         duration: 2000,
                         position: 'top'
                     });

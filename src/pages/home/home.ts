@@ -20,13 +20,16 @@ export class HomePage {
   }
 
   doRefresh(refresher): void {
-    refresher.complete();
-    let toast = this.toastCtrl.create({
-      message: 'Atualizado',
-      duration: 1000,
-      position: 'top'
-    });
-    toast.present();
+    this.api.getMyAdvertisements().subscribe(ads => {
+      this.ads = ads;
+      refresher.complete();
+    })
+    // let toast = this.toastCtrl.create({
+    //   message: 'Atualizado',
+    //   duration: 1000,
+    //   position: 'top'
+    // });
+    // toast.present();
   }
 
   add() {
