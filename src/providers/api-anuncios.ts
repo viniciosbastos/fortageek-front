@@ -16,4 +16,11 @@ export class ApiAnuncios {
             }
         });
     }
+
+    novoAnuncio(anuncio: Anuncio) {
+        return this.api.post('anuncio/novo', anuncio).map(val => {
+            return val.value.data;
+        })
+        .catch(err => Observable.throw(err));
+    }
 }

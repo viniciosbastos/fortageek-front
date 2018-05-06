@@ -18,6 +18,7 @@ import { PerfilPage } from '../pages/perfil/perfil';
 import { ApiAnuncios } from '../providers/api-anuncios';
 import { ToastUtil } from '../util/toast-util';
 import { StorageUtil } from '../util/storage-util';
+import { NovoAnuncioPage } from '../pages/novo-anuncio/novo-anuncio';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { StorageUtil } from '../util/storage-util';
     AnunciosPage,
     PropostasPage,
     PerfilPage,
-    LoginPage
+    LoginPage,
+    NovoAnuncioPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { StorageUtil } from '../util/storage-util';
     PropostasPage,
     TabsPage,
     PerfilPage,
-    LoginPage
+    LoginPage,
+    NovoAnuncioPage
   ],
   providers: [
     StatusBar,

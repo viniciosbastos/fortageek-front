@@ -5,6 +5,7 @@ import { Item } from '../../models/item';
 import { Api } from '../../providers/api';
 import { ApiAnuncios } from '../../providers/api-anuncios';
 import { ToastUtil } from '../../util/toast-util';
+import { NovoAnuncioPage } from '../novo-anuncio/novo-anuncio';
 
 @Component({
   selector: 'page-home',
@@ -28,6 +29,7 @@ export class HomePage {
   }
 
   add() {
-    this.toastUtil.create('Adicionar novo anúncio', 1000, 'top');
+    // this.toastUtil.create('Adicionar novo anúncio', 1000, 'top');
+    this.navCtrl.push(NovoAnuncioPage);
   }
 }

@@ -1,9 +1,9 @@
 import { Usuario } from "./usuario";
 
 export interface Item{
-    id: Number;
+    id?: Number;
     nome: String;
     descricao: String;
     image: String;
-    usuario: Usuario;
+    usuario?: Usuario;
 }
