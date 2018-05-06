@@ -4,6 +4,7 @@ import { Anuncio } from '../../models/anuncio';
 import { Item } from '../../models/item';
 import { Api } from '../../providers/api';
 import { ApiAnuncios } from '../../providers/api-anuncios';
+import { ToastUtil } from '../../util/toast-util';
 
 @Component({
   selector: 'page-home',
@@ -12,7 +13,7 @@ import { ApiAnuncios } from '../../providers/api-anuncios';
 export class HomePage {
   ads: Anuncio[];
 
-  constructor(private navCtrl: NavController, private toastCtrl: ToastController, private api:ApiAnuncios) {
+  constructor(private navCtrl: NavController, private toastUtil: ToastUtil, private api:ApiAnuncios) {
     this.api.getMyAdvertisements().subscribe(ads => {
       this.ads = ads;
       console.log(this.ads);
@@ -24,20 +25,9 @@ export class HomePage {
       this.ads = ads;
       refresher.complete();
     })
-    // let toast = this.toastCtrl.create({
-    //   message: 'Atualizado',
-    //   duration: 1000,
-    //   position: 'top'
-    // });
-    // toast.present();
   }
 
   add() {
-    let toast = this.toastCtrl.create({
-      message: 'Adicionar novo anúncio',
-      duration: 1000,
-      position: 'top'
-    });
-    toast.present();
+    this.toastUtil.create('Adicionar novo anúncio', 1000, 'top');
   }
 }

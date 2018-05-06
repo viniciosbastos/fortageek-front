@@ -11,11 +11,13 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { Api } from '../providers/api';
-import { ApiLogin } from '../providers/api-login';
+import { ApiUsuario } from '../providers/api-usuario';
 import { AnunciosPage } from '../pages/anuncios/anuncios';
 import { PropostasPage } from '../pages/propostas/propostas';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { ApiAnuncios } from '../providers/api-anuncios';
+import { ToastUtil } from '../util/toast-util';
+import { StorageUtil } from '../util/storage-util';
 
 @NgModule({
   declarations: [
@@ -48,9 +50,11 @@ import { ApiAnuncios } from '../providers/api-anuncios';
   ],
   providers: [
     StatusBar,
-    SplashScreen,
+    SplashScreen,,
+    ToastUtil,
+    StorageUtil,
     Api,
-    ApiLogin,,
+    ApiUsuario,
     ApiAnuncios,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

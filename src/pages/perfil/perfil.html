@@ -7,13 +7,18 @@
           <ion-icon name="create"></ion-icon>
       </button>
     </ion-buttons>
-  </ion-navbar>
+    <ion-buttons end *ngIf="isEditing">
+      <button ion-button icon-only (click)="salvar()">
+          <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-item-group> 
+<ion-content padding>  
+  <ion-item-group *ngIf="user"> 
     <ion-item text-center>
       <img src="../../assets/imgs/default-user.png" style="border-radius: 50%; width:120px; height: 120px">
     </ion-item>
@@ -29,9 +34,8 @@
     <ion-label stacked>Senha</ion-label>  
     <ion-input type="password" [(ngModel)]="user.password" disabled="{{!isEditing}}"></ion-input>
   </ion-item> 
-  <ion-item *ngIf="isEditing">
-    <button (click)="salvar()" ion-button color="dark" block>Salvar</button>
-  </ion-item>
+
+  <button ion-button color="primary" clear>Histórico de Trocas</button>
 </ion-item-group> 
 
 </ion-content>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Usuario } from "../../models/usuario";
-import { NavController, ToastController } from "ionic-angular";
-import { ApiLogin } from "../../providers/api-login";
+import { NavController, ToastController, LoadingController, Loading } from "ionic-angular";
+import { ApiUsuario } from "../../providers/api-usuario";
 import { TabsPage } from "../tabs/tabs";
+import { ToastUtil } from "../../util/toast-util";
 
 @Component({
     templateUrl: 'login.html'
@@ -10,7 +11,11 @@ import { TabsPage } from "../tabs/tabs";
 export class LoginPage implements OnInit{
 
     user: Usuario;
-    constructor(private navCtrl: NavController, private loginService: ApiLogin, private toastCtrl: ToastController) {
+    loading: Loading;
+    constructor(private navCtrl: NavController, 
+                private loginService: ApiUsuario, 
+                private toastUtil: ToastUtil,
+                private loadingCtrl: LoadingController) {
 
     }
 
@@ -25,17 +30,26 @@ export class LoginPage implements OnInit{
     }
 
     doLogin(): void {
+        this.createLoading();
         this.loginService.doLogin(this.user)
             .subscribe(
-                val => this.navCtrl.push(TabsPage), 
+                val => {
+                    this.loading.dismiss();
+                    this.navCtrl.push(TabsPage);
+                }, 
                 err => {
                     console.log(err);
-                    let toast = this.toastCtrl.create({
-                        message: err.status,
-                        duration: 2000,
-                        position: 'top'
-                    });
-                    toast.present();
+                    this.toastUtil.create('Problemas ao realizar login', 2000, 'top');
+                    this.loading.dismiss();
         });
+    }
+
+    createLoading(): void {
+        this.loading = this.loadingCtrl.create({
+            spinner: 'crescent',
+            content: 'Aguarde...'            
+        });
+
+        this.loading.present();
     }
 }
