@@ -1,9 +1,9 @@
 import { Usuario } from "./usuario";
 
-export interface Item{
-    id?: Number;
-    nome: String;
-    descricao: String;
-    image: String;
-    usuario?: Usuario;
+export class Item{
+    constructor (public nome: String, public descricao: String, public imagem: String, public usuario?: Usuario, public id?: number){
+
+    }
+
+
 }

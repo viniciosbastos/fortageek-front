@@ -7,6 +7,53 @@
 </ion-header>
 
 <ion-content padding>
-    fl~sighfçslkgjhnsdkl~ghas~kjkl~j
+    <ion-list>
+
+        <ion-item>
+          <ion-label floating>Nome</ion-label>
+          <ion-input type="text" [(ngModel)]="anuncio.item.nome"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Descrição</ion-label>
+          <ion-input type="text" [(ngModel)]="anuncio.item.descricao"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Imagem</ion-label>
+            <ion-input type="text" [(ngModel)]="anuncio.item.imagem"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+            <ion-label floating>Preferência</ion-label>
+            <ion-input type="text" [(ngModel)]="anuncio.preferencia"></ion-input>
+        </ion-item>
+
+        <div padding>
+        </div>
+
+        <ion-list>
+            <ion-item>
+              <ion-label>Categoria</ion-label>
+              <ion-select [(ngModel)]="Categoria">
+                <ion-option value="manga">Mangá</ion-option>
+                <ion-option value="action">Action-figure</ion-option>
+                <ion-option value="video-game">Video-Game</ion-option>
+                <ion-option value="jogosPS4 ">Jogos de PS4</ion-option>
+                <ion-option value="jogosXBOX ">Jogos de XBOX ONE</ion-option>
+                <ion-option value="livro">Livro</ion-option>
+                <ion-option value="outros">Outros</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+        <div padding>
+        </div>
+
+        <div padding>
+            <button ion-button color="dark" block (click)="novoAnuncio()">Cadastrar</button>
+        </div>
+      
+      </ion-list>
 </ion-content>
       
