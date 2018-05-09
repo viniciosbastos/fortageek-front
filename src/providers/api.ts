@@ -10,8 +10,8 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class Api {
-    baseUrl: String = 'http://localhost:8080/api';
-    // baseUrl: String = 'https://secret-tundra-84627.herokuapp.com/api';
+    //baseUrl: String = 'http://localhost:8080/api';
+     baseUrl: String = 'https://secret-tundra-84627.herokuapp.com/api';
     private opt = undefined;
 
     constructor(private http: HttpClient){}

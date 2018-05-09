@@ -21,7 +21,7 @@
           <img src="{{ad.item.foto}}">
         </ion-thumbnail>
         <h2>{{ad.item.nome}}</h2>
-        <ion-badge>{{ad.status}}</ion-badge>
+        <ion-badge>{{getStatus(ad.status)}}</ion-badge>
       </ion-item>
   </ion-list>
 <ion-fab right bottom>

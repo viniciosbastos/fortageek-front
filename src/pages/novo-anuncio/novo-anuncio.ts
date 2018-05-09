@@ -4,7 +4,7 @@ import { Anuncio } from "../../models/anuncio";
 import { ApiCategoria } from "../../providers/api-categoria";
 import { Categoria } from "../../models/categoria";
 import { ToastUtil } from "../../util/toast-util";
-import { NavController } from "ionic-angular";
+import { NavController, LoadingController, Loading } from "ionic-angular";
 
 @Component({
     templateUrl: 'novo-anuncio.html'
@@ -12,17 +12,24 @@ import { NavController } from "ionic-angular";
 export class NovoAnuncioPage implements OnInit {
     anuncio: Anuncio;
     categorias: Categoria[];
+    loading: Loading;
     constructor(private anuncioApi: ApiAnuncios, 
                 private categoriaApi: ApiCategoria, 
                 private toastUtil: ToastUtil, 
-                private navCtrl: NavController){}
+                private navCtrl: NavController,
+                private loadingCtrl: LoadingController){}
 
     novoAnuncio(): void {
+        this.createLoading();
         this.anuncioApi.novoAnuncio(this.anuncio).subscribe(val => {
-            this.toastUtil.create(val.message, 2000, 'top');
+            this.loading.dismiss();
             this.navCtrl.pop();
         });
 
+    }
+
+    cancelar(): void {
+        this.navCtrl.pop();
     }
 
     ngOnInit(): void {
@@ -34,5 +41,14 @@ export class NovoAnuncioPage implements OnInit {
         this.categoriaApi.getCategorias().subscribe(val => {
             this.categorias = val;
         })
+    }
+
+    createLoading(): void {
+        this.loading = this.loadingCtrl.create({
+            spinner: 'crescent',
+            content: 'Aguarde...'            
+        });
+
+        this.loading.present();
     }
 }

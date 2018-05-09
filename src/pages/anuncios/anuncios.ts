@@ -1,16 +1,16 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { ApiAnuncios } from "../../providers/api-anuncios";
+import { Api } from "../../providers/api"
 import { Anuncio } from "../../models/anuncio";
 
 @Component({
     selector: 'page-anuncios',
     templateUrl: 'anuncios.html'
 }) 
-export class AnunciosPage {
+export class AnunciosPage implements OnInit{
     result: Anuncio[];
-    constructor(private navCtrl: NavController, private anuncioApi: ApiAnuncios) { }
-
+    constructor(private navCtrl: NavController, private anuncioApi: ApiAnuncios, private api:Api) {}
   getItems(ev: any) {
     this.anuncioApi.searchAnuncio(ev.target.value).subscribe(val => {
       this.result = val;
@@ -27,5 +27,11 @@ export class AnunciosPage {
     //     return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
     //   })
     // }
+  }
+
+  ngOnInit(): void {
+    this.anuncioApi.searchAnuncio('').subscribe(val => {
+      this.result = val;
+    });
   }
 }
