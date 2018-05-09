@@ -21,7 +21,7 @@
 
         <ion-item>
             <ion-label floating>Imagem</ion-label>
-            <ion-input type="text" [(ngModel)]="anuncio.item.imagem"></ion-input>
+            <ion-input type="text" [(ngModel)]="anuncio.item.foto"></ion-input>
         </ion-item>
         
         <ion-item>
@@ -35,14 +35,8 @@
         <ion-list>
             <ion-item>
               <ion-label>Categoria</ion-label>
-              <ion-select [(ngModel)]="Categoria">
-                <ion-option value="manga">Mangá</ion-option>
-                <ion-option value="action">Action-figure</ion-option>
-                <ion-option value="video-game">Video-Game</ion-option>
-                <ion-option value="jogosPS4 ">Jogos de PS4</ion-option>
-                <ion-option value="jogosXBOX ">Jogos de XBOX ONE</ion-option>
-                <ion-option value="livro">Livro</ion-option>
-                <ion-option value="outros">Outros</ion-option>
+              <ion-select [(ngModel)]="anuncio.item.categoria">
+                <ion-option *ngFor="let categoria of categorias" [value]="categoria">{{categoria.nome}}</ion-option>
               </ion-select>
             </ion-item>
           </ion-list>

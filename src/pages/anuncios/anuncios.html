@@ -9,8 +9,11 @@
 <ion-content>
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
-      <ion-item *ngFor="let item of items">
-        {{ item }}
-      </ion-item>
+      <ion-item *ngFor="let ad of result">
+        <ion-thumbnail item-start>
+            <img src="{{ad.item.foto}}">
+          </ion-thumbnail>
+          <h2>{{ad.item.nome}}</h2>
+        </ion-item>
     </ion-list>
   </ion-content>

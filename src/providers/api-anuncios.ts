@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Api } from "./api";
 import { Observable } from "rxjs/Observable";
 import { Anuncio } from "../models/anuncio";
+import { HttpParams } from "@angular/common/http";
 
 @Injectable()
 export class ApiAnuncios {
@@ -24,12 +25,13 @@ export class ApiAnuncios {
         .catch(err => Observable.throw(err));
     }
 
-    searchAnuncio(nome: String){
-        return this.api.get('anuncio').map(response => {
-            response = response.value
-            if (response.success) {
-                return response.data.anuncios;
-            }
+    searchAnuncio(nome: string, categoria_id?: number){
+        let param = new HttpParams().set('nome', nome);
+        if (categoria_id) {
+            param.set('categoria_id', categoria_id.toString());
+        }
+        return this.api.get('anuncio', param).map(response => {
+            return response.value.data.anuncios
         });
     }
 }

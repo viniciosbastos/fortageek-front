@@ -10,13 +10,17 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class Api {
-    // baseUrl: String = 'http://localhost:8080/api';
-    baseUrl: String = 'https://secret-tundra-84627.herokuapp.com/api';
+    baseUrl: String = 'http://localhost:8080/api';
+    // baseUrl: String = 'https://secret-tundra-84627.herokuapp.com/api';
     private opt = undefined;
 
     constructor(private http: HttpClient){}
 
-    get(path: String) {
+    get(path: String, params?: any) {
+        if (params) {
+            this.opt.params = params;
+            console.log(this.opt);
+        }
         return this.http
             .get(this.baseUrl + '/' + path, this.opt)
             .map(response => this.handleResponse(response))

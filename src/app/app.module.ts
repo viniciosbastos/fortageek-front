@@ -19,6 +19,7 @@ import { ApiAnuncios } from '../providers/api-anuncios';
 import { ToastUtil } from '../util/toast-util';
 import { StorageUtil } from '../util/storage-util';
 import { NovoAnuncioPage } from '../pages/novo-anuncio/novo-anuncio';
+import { ApiCategoria } from '../providers/api-categoria';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { NovoAnuncioPage } from '../pages/novo-anuncio/novo-anuncio';
     Api,
     ApiUsuario,
     ApiAnuncios,
+    ApiCategoria,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
