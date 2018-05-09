@@ -23,4 +23,13 @@ export class ApiAnuncios {
         })
         .catch(err => Observable.throw(err));
     }
+
+    searchAnuncio(nome: String){
+        return this.api.get('anuncio').map(response => {
+            response = response.value
+            if (response.success) {
+                return response.data.anuncios;
+            }
+        });
+    }
 }
