@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="light">
+  <ion-navbar color="dark">
     <ion-title>
       Meus Anúncios
     </ion-title>
@@ -21,11 +21,12 @@
           <img src="{{ad.item.foto}}">
         </ion-thumbnail>
         <h2>{{ad.item.nome}}</h2>
-        <ion-badge>{{getStatus(ad.status)}}</ion-badge>
+        <ion-badge color="secondary">{{getStatus(ad.status)}}</ion-badge>
+        <button ion-button color="danger">Remover</button>
       </ion-item>
   </ion-list>
 <ion-fab right bottom>
-    <button (click)="add()" ion-fab color="dark">
+    <button (click)="add()" ion-fab color="secondary">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
