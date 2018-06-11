@@ -3,6 +3,7 @@ import { NavController } from "ionic-angular";
 import { ApiAnuncios } from "../../providers/api-anuncios";
 import { Api } from "../../providers/api"
 import { Anuncio } from "../../models/anuncio";
+import { DetalhesPage } from "../detalhes/detalhes";
 
 @Component({
     selector: 'page-anuncios',
@@ -11,6 +12,7 @@ import { Anuncio } from "../../models/anuncio";
 export class AnunciosPage implements OnInit{
     result: Anuncio[];
     constructor(private navCtrl: NavController, private anuncioApi: ApiAnuncios, private api:Api) {}
+
   getItems(ev: any) {
     this.anuncioApi.searchAnuncio(ev.target.value).subscribe(val => {
       this.result = val;
@@ -33,5 +35,9 @@ export class AnunciosPage implements OnInit{
     this.anuncioApi.searchAnuncio('').subscribe(val => {
       this.result = val;
     });
+  }
+
+  goToDetail(ad: any): void {
+    this.navCtrl.push(DetalhesPage, {anuncio: ad});
   }
 }

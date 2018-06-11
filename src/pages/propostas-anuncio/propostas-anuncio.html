@@ -1,0 +1,44 @@
+<ion-header>
+        <ion-navbar color="dark">
+            <ion-title>
+                Propostas
+            </ion-title>
+        </ion-navbar>
+    </ion-header>
+    
+    <ion-content padding>
+    
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content
+                pullingText="Puxe para atualizar"
+                refreshingText="Atualizando...">
+            </ion-refresher-content>
+        </ion-refresher>
+    
+        <ion-list>
+            <ion-item *ngFor='let proposta of propostas'>
+                <ion-thumbnail item-start>
+                    <img src="{{proposta.item.foto}}">
+                </ion-thumbnail>
+                <h2>{{proposta.item.nome}}</h2>
+                <h4>Feita por: {{proposta.usuario.nome}}</h4>
+                <ion-grid>
+                    <ion-row *ngIf="anuncio.status == 2">
+                        <ion-col col-6>
+                            <button ion-button color="primary" clear (click)="aceitar(proposta)">Aceitar</button>
+                        </ion-col>
+                        <ion-col col-6>
+                            <button ion-button color="danger" clear (click)="recusar(proposta)">Recusar</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="anuncio.status == 3">
+                        <ion-col text-center *ngIf="proposta.status == 1">
+                            <label style="color: #488aff">Proposta Aceita</label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+        </ion-list>
+    
+    </ion-content>
+    

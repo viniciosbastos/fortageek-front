@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar color="dark">
+        <ion-title>Nova Proposta</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form (submit)="salvarProposta()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Anúncio</ion-label>
+                <ion-input type="text" [(ngModel)]="anuncio.item.nome" name="anuncio" disabled="true"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Nome</ion-label>
+                <ion-input type="text" [(ngModel)]="item.nome" name="nome"></ion-input>
+            </ion-item>
+                
+            <ion-item>
+                <ion-label floating>Descrição</ion-label>
+                <ion-input type="text" [(ngModel)]="item.descricao" name="descricao"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+                <ion-label floating>Imagem</ion-label>
+                <ion-input type="text" [(ngModel)]="item.foto" name="foto"></ion-input>
+            </ion-item>
+                    
+            <div padding>
+                <button ion-button color="secondary" block>Salvar</button>
+            </div>
+        </ion-list>
+    </form>
+</ion-content>
+      

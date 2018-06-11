@@ -7,5 +7,22 @@
 </ion-header>
 
 <ion-content padding>
-    Várias propostas aqui e tal.
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+            pullingText="Puxe para atualizar"
+            refreshingText="Atualizando...">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item *ngFor='let proposta of propostas'>
+            <ion-thumbnail item-start>
+                <img src="{{proposta.item.foto}}">
+            </ion-thumbnail>
+            <h2>{{proposta.item.nome}}</h2>
+            <ion-badge color="secondary">{{getStatus(proposta.status)}}</ion-badge>
+        </ion-item>
+    </ion-list>
+
 </ion-content>

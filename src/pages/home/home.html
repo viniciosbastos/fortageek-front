@@ -16,15 +16,34 @@
   </ion-refresher>
 
   <ion-list>
-      <ion-item *ngFor='let ad of ads'>
-        <ion-thumbnail item-start>
-          <img src="{{ad.item.foto}}">
-        </ion-thumbnail>
-        <h2>{{ad.item.nome}}</h2>
-        <ion-badge color="secondary">{{getStatus(ad.status)}}</ion-badge>
-        <button ion-button color="danger">Remover</button>
-      </ion-item>
-  </ion-list>
+    <ion-item-sliding *ngFor='let ad of ads' >
+      <ion-item (click)="detalhes(ad)">
+          <ion-thumbnail item-start>
+            <img src="{{ad.item.foto}}">
+          </ion-thumbnail>
+          <h2>{{ad.item.nome}}</h2>
+          <ion-badge color="primary"><ion-icon name="pricetags"></ion-icon> {{ad.numeroPropostas}}</ion-badge>
+          <ion-badge color="primary"><ion-icon name="mail"></ion-icon> {{ad.numeroComentarios}}</ion-badge>
+          <ion-badge color="secondary">{{getStatus(ad.status)}}</ion-badge>
+          <!-- <button ion-button color="danger">Remover</button> -->
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary" (click)="propostasAnuncio(ad)">
+            <ion-icon name="pricetags" style="zoom: 2.0"></ion-icon>
+            Propostas
+          </button>
+          <button ion-button *ngIf="ad.status == 3" color="secondary" (click)="finalizar(ad)">
+            <ion-icon name="done-all" style="zoom: 2.0"></ion-icon>
+            Finalizar
+          </button>
+
+          <button ion-button *ngIf="ad.status == 1 || ad.status == 2" color="danger" (click)="excluir(ad)">
+            <ion-icon name="trash" style="zoom: 2.0"></ion-icon>
+            Excluir
+          </button>  
+        </ion-item-options>
+    </ion-item-sliding>
+    </ion-list>
 <ion-fab right bottom>
     <button (click)="add()" ion-fab color="secondary">
       <ion-icon name="add"></ion-icon>

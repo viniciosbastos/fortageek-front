@@ -10,26 +10,32 @@ import 'rxjs/add/observable/of';
 
 @Injectable()
 export class Api {
-    //baseUrl: String = 'http://localhost:8080/api';
-     baseUrl: String = 'https://secret-tundra-84627.herokuapp.com/api';
-    private opt = undefined;
+    baseUrl: String = 'http://localhost:8080/api';
+    // baseUrl: String = 'https://secret-tundra-84627.herokuapp.com/api';
+    private header = undefined;
 
     constructor(private http: HttpClient){}
 
     get(path: String, params?: any) {
+        let o = {
+            headers: this.header,
+            params: undefined
+        }
         if (params) {
-            this.opt.params = params;
-            console.log(this.opt);
+            o.params = params;
         }
         return this.http
-            .get(this.baseUrl + '/' + path, this.opt)
+            .get(this.baseUrl + '/' + path, o)
             .map(response => this.handleResponse(response))
             .catch(err => Observable.throw(new Error(err)));
     }
 
     post(path: String, body: any) {
+        const opt = {
+            headers: this.header
+        }
         return this.http
-            .post(this.baseUrl + '/' + path, body, this.opt)
+            .post(this.baseUrl + '/' + path, body, opt)
             .map(response => this.handleResponse(response))
             .catch(err => Observable.throw(err));
     }
@@ -51,10 +57,8 @@ export class Api {
     }
 
     setAuthHeader(header: string) {
-        this.opt = {
-            headers: new HttpHeaders({
-                'Authorization': header
-            })
-        };
+        this.header = new HttpHeaders({
+            'Authorization': header
+        });
     }
 }

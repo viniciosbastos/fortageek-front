@@ -20,6 +20,10 @@ import { ToastUtil } from '../util/toast-util';
 import { StorageUtil } from '../util/storage-util';
 import { NovoAnuncioPage } from '../pages/novo-anuncio/novo-anuncio';
 import { ApiCategoria } from '../providers/api-categoria';
+import { DetalhesPage } from '../pages/detalhes/detalhes';
+import { NovaPropostaPage } from '../pages/nova-proposta/nova-proposta';
+import { ApiProposta } from '../providers/api-proposta';
+import { PropostasAnuncioPage } from '../pages/propostas-anuncio/propostas-anuncio';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,10 @@ import { ApiCategoria } from '../providers/api-categoria';
     PropostasPage,
     PerfilPage,
     LoginPage,
-    NovoAnuncioPage
+    NovoAnuncioPage,
+    DetalhesPage,
+    NovaPropostaPage,
+    PropostasAnuncioPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +57,10 @@ import { ApiCategoria } from '../providers/api-categoria';
     TabsPage,
     PerfilPage,
     LoginPage,
-    NovoAnuncioPage
+    NovoAnuncioPage,
+    DetalhesPage,
+    NovaPropostaPage,
+    PropostasAnuncioPage
   ],
   providers: [
     StatusBar,
@@ -61,6 +71,7 @@ import { ApiCategoria } from '../providers/api-categoria';
     ApiUsuario,
     ApiAnuncios,
     ApiCategoria,
+    ApiProposta,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

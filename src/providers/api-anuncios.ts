@@ -25,6 +25,23 @@ export class ApiAnuncios {
         .catch(err => Observable.throw(err));
     }
 
+    finalizarAnuncio(anuncioId) {
+        return this.api.get('anuncio/finalizar/' + anuncioId).map(response => {
+            response = response.value
+            if (response.success) {
+                return response.data.message;
+            }
+        });
+    }
+
+    excluirAnuncio(anuncioId) {
+        return this.api.get('anuncio/delete/' + anuncioId).map(response => {
+            response = response.value
+            if (response.success) {
+                return response.data.message;
+            }
+        });
+    }
     searchAnuncio(nome: string, categoria_id?: number){
         let param = new HttpParams().set('nome', nome);
         if (categoria_id) {
@@ -32,6 +49,22 @@ export class ApiAnuncios {
         }
         return this.api.get('anuncio', param).map(response => {
             return response.value.data.anuncios
+        });
+    }
+
+    novoComentario(comentario: any, anuncioId: number) {
+        return this.api.post('anuncio/' + anuncioId + '/comentario', comentario).map(val => {
+            return val.value.data.message;
+        })
+        .catch(err => Observable.throw(err));
+    }
+
+    getComentarios(anuncioId) {
+        return this.api.get('anuncio/' + anuncioId + '/comentario').map(response => {
+            response = response.value
+            if (response.success) {
+                return response.data.comentarios;
+            }
         });
     }
 }

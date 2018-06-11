@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-navbar color="dark">
+        <ion-title>
+            Detalhes
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <h1>{{anuncio.item.nome}}</h1>
+        </ion-item>
+        <ion-item text-center>
+            <img src="{{anuncio.item.foto}}">
+        </ion-item>
+        <ion-item>
+            <h2>Descrição</h2>
+            <p>{{anuncio.item.descricao}}</p>
+        </ion-item>
+        <ion-item>
+            <h2>Anunciante</h2>
+            <p>{{anuncio.usuario.nome}}</p>
+        </ion-item>
+                
+        <div padding *ngIf="usuario !== undefined && usuario.id != anuncio.usuario.id">
+            <button ion-button color="secondary" block (click) = "novaProposta()">Fazer Proposta</button>
+        </div>                
+    </ion-list>
+
+    <ion-card>
+        <ion-card-header>
+            Comentários
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item text-wrap *ngFor="let c of comentarios">
+                    <div item-start style="width: 50px; height: 50px;">
+                        <img src="assets/imgs/default-user.png" style="border-radius: 50%;">
+                    </div>
+                    <h2>{{c.usuario.nome}}</h2>
+                    <h6>{{c.data | date: 'dd/MM/yyyy hh:mm'}}</h6>
+                    <p>{{c.texto}}</p>
+                </ion-item>
+            </ion-list>
+            <ion-grid>
+                <ion-row *ngIf="!novo">
+                    <button ion-button color="secondary" block (click) = "novoComentario()">Novo Comentário</button>
+                </ion-row>
+                <ion-row *ngIf="novo">
+                    <ion-col>
+                        <ion-label stacked>Novo Comentário</ion-label>
+                        <ion-textarea [(ngModel)]="comentario"></ion-textarea>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="novo">
+                    <ion-col col-6 text-center>
+                        <button ion-button color="primary" clear (click)="salvar()">Salvar</button>
+                    </ion-col>
+                    <ion-col col-6 text-center>
+                        <button ion-button color="danger" clear (click)="cancelar()">Cancelar</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
